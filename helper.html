@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helper Page</title>
+    <link rel="stylesheet" href="css/helper.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Kanit:ital@1&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="left">
+            <img src="img/icons8_Account_50px.png" alt="">
+            <div>Helper</div>
+        </div>
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Selected Orders</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <button class="btn">Call us</button>
+            <button class="btn">E-mail us</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Available Customer Orders</h1>
+        <ul class="order-list">
+            <!-- Dynamically generate list of customer orders here -->
+            <!-- List items will be fetched from the database using PHP -->
+        </ul>
+
+        <h1>Selected Orders</h1>
+        <ul class="selected-orders">
+            <!-- Display selected orders here -->
+            <!-- Dynamically add selected orders based on helper's actions -->
+        </ul>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch and display available customer orders from the database
+            $.ajax({
+                url: 'helper.php', // Update the URL to the correct PHP file
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data && data.length > 0) {
+                        var orderList = $('.order-list');
+                        orderList.empty(); // Clear existing list
+
+                        // Loop through the data and append orders to the list
+                        $.each(data, function(index, order) {
+                            var listItem = $('<li>').html('<span class="order-id">' + order.item_name + '</span><button class="select-btn">Select</button>');
+                            orderList.append(listItem);
+                        });
+                    } else {
+                        // Handle no orders available
+                        $('.order-list').html('<p>No orders available</p>');
+                    }
+                },
+                error: function(error) {
+                    console.log('Error fetching orders: ', error);
+                }
+            });
+
+            // Add logic to handle selecting orders and displaying selected orders here
+        });
+    </script>
+
+</body>
+</html>

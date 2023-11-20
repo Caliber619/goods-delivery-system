@@ -1,0 +1,41 @@
+/* Your existing helper.css styles */
+
+/* Additional styles for the helper page */
+.container {
+    margin: 20px;
+}
+
+.order-list {
+    list-style: none;
+    padding: 0;
+}
+
+.order-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.order-id {
+    font-weight: bold;
+}
+
+.select-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.selected-orders {
+    list-style: none;
+    padding: 0;
+}
+
+.selected-orders li {
+    margin-bottom: 10px;
+}
